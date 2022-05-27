@@ -1,6 +1,6 @@
 ﻿namespace PressKeySearch
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.selectLabel = new System.Windows.Forms.Label();
             this.selectBox = new System.Windows.Forms.ComboBox();
             this.officeLabel = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             // selectLabel
             // 
             this.selectLabel.AutoSize = true;
-            this.selectLabel.Location = new System.Drawing.Point(13, 13);
+            this.selectLabel.Location = new System.Drawing.Point(158, 12);
             this.selectLabel.Name = "selectLabel";
             this.selectLabel.Size = new System.Drawing.Size(44, 13);
             this.selectLabel.TabIndex = 0;
@@ -58,7 +58,7 @@
             "1",
             "2",
             "3"});
-            this.selectBox.Location = new System.Drawing.Point(79, 4);
+            this.selectBox.Location = new System.Drawing.Point(220, 9);
             this.selectBox.Name = "selectBox";
             this.selectBox.Size = new System.Drawing.Size(121, 21);
             this.selectBox.TabIndex = 1;
@@ -66,7 +66,7 @@
             // officeLabel
             // 
             this.officeLabel.AutoSize = true;
-            this.officeLabel.Location = new System.Drawing.Point(254, 12);
+            this.officeLabel.Location = new System.Drawing.Point(357, 10);
             this.officeLabel.Name = "officeLabel";
             this.officeLabel.Size = new System.Drawing.Size(35, 13);
             this.officeLabel.TabIndex = 2;
@@ -81,15 +81,16 @@
             "Офис 2",
             "Офис 3",
             "Белогорск",
-            "Свободный"});
-            this.officeBox.Location = new System.Drawing.Point(365, 5);
+            "Свободный",
+            "Все офисы"});
+            this.officeBox.Location = new System.Drawing.Point(398, 9);
             this.officeBox.Name = "officeBox";
             this.officeBox.Size = new System.Drawing.Size(121, 21);
             this.officeBox.TabIndex = 3;
             // 
             // openButton
             // 
-            this.openButton.Location = new System.Drawing.Point(623, 5);
+            this.openButton.Location = new System.Drawing.Point(535, 9);
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(126, 21);
             this.openButton.TabIndex = 4;
@@ -99,7 +100,8 @@
             // 
             // aboutImage
             // 
-            this.aboutImage.Location = new System.Drawing.Point(768, 4);
+            this.aboutImage.Image = ((System.Drawing.Image)(resources.GetObject("aboutImage.Image")));
+            this.aboutImage.Location = new System.Drawing.Point(879, 8);
             this.aboutImage.Name = "aboutImage";
             this.aboutImage.Size = new System.Drawing.Size(20, 22);
             this.aboutImage.TabIndex = 5;
@@ -110,15 +112,15 @@
             // 
             this.infoField.Location = new System.Drawing.Point(13, 45);
             this.infoField.Name = "infoField";
-            this.infoField.Size = new System.Drawing.Size(775, 365);
+            this.infoField.Size = new System.Drawing.Size(886, 365);
             this.infoField.TabIndex = 6;
             this.infoField.Text = "";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 428);
+            this.ClientSize = new System.Drawing.Size(911, 428);
             this.Controls.Add(this.infoField);
             this.Controls.Add(this.aboutImage);
             this.Controls.Add(this.openButton);
@@ -128,7 +130,7 @@
             this.Controls.Add(this.selectLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Поиск вызовов кнопок";
             ((System.ComponentModel.ISupportInitialize)(this.aboutImage)).EndInit();
             this.ResumeLayout(false);

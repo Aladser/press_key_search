@@ -11,18 +11,18 @@ using System.Windows.Forms;
 
 namespace PressKeySearch
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         //String path = "D:\\EPMAgent0.log";
         String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
         String[] nicks = new String[4];
         StreamReader sr;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             if (!File.Exists(path))
             {
-                MessageBox.Show("Файл " + path + " не существвует. Укажите путь к файлу");
+                MessageBox.Show("Файл " + path + " не существует. Укажите путь к файлу");
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Логи (*.log)|*.log|Все файлы (*.*)|*.*";
                 if (ofd.ShowDialog() == DialogResult.OK)
