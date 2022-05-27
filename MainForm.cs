@@ -47,19 +47,19 @@ namespace PressKeySearch
             String line;
             String quality = nicks[selectBox.SelectedIndex];
             String office = officeBox.Items[officeBox.SelectedIndex].ToString();
-
             infoField.Text = "";
             while ((line = sr.ReadLine()) != null)
             {
                 if (officeBox.SelectedIndex == 5)
                 {
                     if (line.Contains(quality))
-                        infoField.Text += line + "\n";
+                        //infoField.Text += line + "\n";
+                        infoField.Text += line.Substring(0, 50) + line.Substring(112) + "\n";
                 }
                 else
                 {
                     if (line.Contains(quality) && line.Contains(office))
-                        infoField.Text += line + "\n";
+                        infoField.Text += line.Substring(0, 50) + line.Substring(112) + "\n";
                 }
 
             }

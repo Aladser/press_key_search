@@ -44,7 +44,7 @@
             // selectLabel
             // 
             this.selectLabel.AutoSize = true;
-            this.selectLabel.Location = new System.Drawing.Point(158, 12);
+            this.selectLabel.Location = new System.Drawing.Point(358, 12);
             this.selectLabel.Name = "selectLabel";
             this.selectLabel.Size = new System.Drawing.Size(44, 13);
             this.selectLabel.TabIndex = 0;
@@ -58,7 +58,7 @@
             "1",
             "2",
             "3"});
-            this.selectBox.Location = new System.Drawing.Point(220, 9);
+            this.selectBox.Location = new System.Drawing.Point(408, 9);
             this.selectBox.Name = "selectBox";
             this.selectBox.Size = new System.Drawing.Size(121, 21);
             this.selectBox.TabIndex = 1;
@@ -66,7 +66,7 @@
             // officeLabel
             // 
             this.officeLabel.AutoSize = true;
-            this.officeLabel.Location = new System.Drawing.Point(357, 10);
+            this.officeLabel.Location = new System.Drawing.Point(190, 12);
             this.officeLabel.Name = "officeLabel";
             this.officeLabel.Size = new System.Drawing.Size(35, 13);
             this.officeLabel.TabIndex = 2;
@@ -83,7 +83,7 @@
             "Белогорск",
             "Свободный",
             "Все офисы"});
-            this.officeBox.Location = new System.Drawing.Point(398, 9);
+            this.officeBox.Location = new System.Drawing.Point(231, 10);
             this.officeBox.Name = "officeBox";
             this.officeBox.Size = new System.Drawing.Size(121, 21);
             this.officeBox.TabIndex = 3;
