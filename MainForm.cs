@@ -15,8 +15,10 @@ namespace PressKeySearch
     {
         //String path = "D:\\EPMAgent0.log";
         String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
-        String[] nicks = new String[4];
+        String[] nicks = { "псевдоним: \'1\'", "псевдоним: \'2\'", "псевдоним: \'3\'" };
+        String[] nameButton = {" Нажатие зеленой кнопки  ", " Нажатие серой кнопки  ", " Нажатие красной кнопки  "};
         StreamReader sr;
+
         public MainForm()
         {
             InitializeComponent();
@@ -36,9 +38,6 @@ namespace PressKeySearch
             }
             selectBox.SelectedIndex = 0;
             officeBox.SelectedIndex = 0;
-            nicks[0] = "псевдоним: \'1\'";
-            nicks[1] = "псевдоним: \'2\'";
-            nicks[2] = "псевдоним: \'3\'";
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -50,24 +49,20 @@ namespace PressKeySearch
             infoField.Text = "";
             while ((line = sr.ReadLine()) != null)
             {
-                if (officeBox.SelectedIndex == 5)
+                if (line.Contains(quality))
                 {
-                    if (line.Contains(quality))
-                        //infoField.Text += line + "\n";
-                        infoField.Text += line.Substring(0, 50) + line.Substring(112) + "\n";
+                    if (officeBox.SelectedIndex==0 || line.Contains(office))
+                        if (line.Contains("Офис 1") || line.Contains("Офис 2") || line.Contains("Офис 3"))
+                            infoField.Text += line.Substring(0, 20) + nameButton[selectBox.SelectedIndex] + line.Substring(133, 6) + "  Окно " + line.Substring(125, 2) + "\n";
+                        else if (line.Contains("Белогорск") || line.Contains("Свободный"))
+                            infoField.Text += line.Substring(0, 20) + nameButton[selectBox.SelectedIndex] + line.Substring(125, 9) + "  " + line.Substring(135, 7) + "\n";
                 }
-                else
-                {
-                    if (line.Contains(quality) && line.Contains(office))
-                        infoField.Text += line.Substring(0, 50) + line.Substring(112) + "\n";
-                }
-
             }
         }
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "(c) Aladser 2022");
+            toolTip.SetToolTip(aboutImage, "(c) Aladser Версия 1.07 2022");
         }
     }
 }

@@ -55,9 +55,9 @@
             this.selectBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectBox.FormattingEnabled = true;
             this.selectBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
+            "зеленая",
+            "серая",
+            "красная"});
             this.selectBox.Location = new System.Drawing.Point(408, 9);
             this.selectBox.Name = "selectBox";
             this.selectBox.Size = new System.Drawing.Size(121, 21);
@@ -77,12 +77,12 @@
             this.officeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.officeBox.FormattingEnabled = true;
             this.officeBox.Items.AddRange(new object[] {
+            "Все офисы",
             "Офис 1",
             "Офис 2",
             "Офис 3",
             "Белогорск",
-            "Свободный",
-            "Все офисы"});
+            "Свободный"});
             this.officeBox.Location = new System.Drawing.Point(231, 10);
             this.officeBox.Name = "officeBox";
             this.officeBox.Size = new System.Drawing.Size(121, 21);
