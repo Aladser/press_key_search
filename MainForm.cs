@@ -15,8 +15,8 @@ namespace PressKeySearch
     {
         int textLength; // число строк в EPMAgent0.log
         String text = "";
-        String path = "D:\\EPMAgent0.log";
-        //String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
+        //String path = "D:\\EPMAgent0.log";
+        String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
         /// <summary>
         /// Названия оценок качеств в файле
         /// </summary>
