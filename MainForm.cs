@@ -66,7 +66,7 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "Поиск вызов кнопок\nВерсия 1.09\nby Aladser\n2022");
+            toolTip.SetToolTip(aboutImage, "Поиск вызов кнопок\nВерсия 1.1\nby Aladser\n2022");
         }
         // тело backgroundworker
         private void bw_DoWork(object sender, DoWorkEventArgs e)
@@ -149,6 +149,8 @@ namespace PressKeySearch
         {
             if (selectedUnitsComboBox.SelectedIndex != 0)
                 filterButton.Enabled = true;
+            else
+                filterButton.Enabled = false;
         }
 
         private void filterButton_Click(object sender, EventArgs e)
