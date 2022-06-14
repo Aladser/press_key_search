@@ -131,6 +131,7 @@
             this.selectedUnitsComboBox.Name = "selectedUnitsComboBox";
             this.selectedUnitsComboBox.Size = new System.Drawing.Size(121, 21);
             this.selectedUnitsComboBox.TabIndex = 7;
+            this.selectedUnitsComboBox.SelectedValueChanged += new System.EventHandler(this.selectedUnitsComboBox_SelectedValueChanged);
             // 
             // filterButton
             // 
@@ -141,6 +142,7 @@
             this.filterButton.TabIndex = 8;
             this.filterButton.Text = "Фильтр";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // windowLabel
             // 

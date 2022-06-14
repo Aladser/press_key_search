@@ -13,11 +13,13 @@ namespace PressKeySearch
 {
     public partial class MainForm : Form
     {
-        int li = 0;
         int textLength; // число строк в EPMAgent0.log
         String text = "";
         String path = "D:\\EPMAgent0.log";
         //String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
+        /// <summary>
+        /// Названия оценок качеств в файле
+        /// </summary>
         String[] nicks = { "псевдоним: \'1\'", "псевдоним: \'2\'", "псевдоним: \'3\'" };
         String[] qualities = {" Нажата зеленая кнопка  ", " Нажата серая кнопка  ", " Нажата красная кнопка  "};
         StreamReader sr;
@@ -64,7 +66,7 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "(c) Aladser Версия 1.08 2022");
+            toolTip.SetToolTip(aboutImage, "Поиск вызов кнопок\nВерсия 1.09\nby Aladser\n2022");
         }
         // тело backgroundworker
         private void bw_DoWork(object sender, DoWorkEventArgs e)
@@ -85,6 +87,7 @@ namespace PressKeySearch
             String window = "";
             int officeNumber = 0;
             selectQualityElement.Invoke(new Action(() => { officeNumber = officeBox.SelectedIndex;  }));
+            int li = 0;
             while ((line = sr.ReadLine()) != null)
             {
                 if (line.Contains(qualityName))
@@ -106,9 +109,10 @@ namespace PressKeySearch
                         {
                             selectedWindows.Add(window);
                         }
+                        bw.ReportProgress(li*100/textLength);
+                        li++;
                     }
                 }
-                //bw.ReportProgress(++li*100/textLength);
             }
             selectedWindows.Sort();
             foreach (String elem in selectedWindows)
@@ -138,8 +142,25 @@ namespace PressKeySearch
                 progressLabel.Text = "Ок";
                 selectedUnitsComboBox.SelectedIndex = 0;
                 infoField.Text = text;
-                li = 0;
             }
+        }
+        // Выбор окна для фильтрации
+        private void selectedUnitsComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (selectedUnitsComboBox.SelectedIndex != 0)
+                filterButton.Enabled = true;
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            String[] textArray = text.Split('\n');
+            String filterText = "";
+            for(int i=0; i<textArray.Length; i++)
+            {
+                if (textArray[i].Contains(selectedUnitsComboBox.SelectedItem.ToString())) 
+                    filterText += textArray[i]+"\n";
+            }
+            infoField.Text = filterText;
         }
     }
 }
