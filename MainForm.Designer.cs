@@ -180,7 +180,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Поиск вызовов кнопок";
+            this.Text = "Поиск нажатий кнопок";
             ((System.ComponentModel.ISupportInitialize)(this.aboutImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

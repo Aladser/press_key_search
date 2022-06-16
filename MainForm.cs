@@ -15,8 +15,8 @@ namespace PressKeySearch
     {
         int textLength; // число строк в EPMAgent0.log
         String text = "";
-        //String path = "D:\\EPMAgent0.log";
-        String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
+        String path = "D:\\EPMAgent0.log";
+        //String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
         /// <summary>
         /// Названия оценок качеств в файле
         /// </summary>
@@ -66,12 +66,17 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "Поиск вызовов кнопок\nВерсия 1.1\nby Aladser\n2022");
+            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.1\nby Aladser\n2022");
+        }
+
+        private void clear()
+        {
+            selectedUnitsComboBox.Items.Clear();
         }
         // тело backgroundworker
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            selectedUnitsComboBox.Invoke(new Action(() => { selectedUnitsComboBox.Items.Clear(); }));
+            selectedUnitsComboBox.Invoke(new Action(clear));
             selectedUnitsComboBox.Invoke(new Action(() => { selectedUnitsComboBox.Items.Add("Все"); }));
             text = "";
             infoField.Invoke(new Action(() => { infoField.Text = ""; }));
