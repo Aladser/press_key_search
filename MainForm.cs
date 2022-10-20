@@ -1,59 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PressKeySearch
 {
     public partial class MainForm : Form
-    {
-        int textLength; // число строк в EPMAgent0.log
-        String text = "";
-        String path = "D:\\EPMAgent0.log";
-        //String path = "C:\\Users\\User\\Documents\\ProLAN\\EPMAgent\\EPMAgent0.log";
-        /// <summary>
-        /// Названия оценок качеств в файле
-        /// </summary>
+    { 
+        String infoFieldText = ""; // текстовый буфер
+        // Названия оценок качеств в файле
         String[] nicks = { "псевдоним: \'1\'", "псевдоним: \'2\'", "псевдоним: \'3\'" };
-        String[] qualities = {" Нажата зеленая кнопка  ", " Нажата серая кнопка  ", " Нажата красная кнопка  "};
+        String[] qualities = {" ЗЕЛЕНАЯ КНОПКА  ", " СЕРАЯ КНОПКА  ", " КРАСНАЯ КНОПКА  "};
         StreamReader sr;
 
         public MainForm()
         {
             InitializeComponent();
-
+            // фоновая задача
             bw = new BackgroundWorker();
             bw.WorkerReportsProgress = true;
             bw.WorkerSupportsCancellation = true;
             bw.DoWork += bw_DoWork;
             bw.ProgressChanged += bw_ProgressChanged;
             bw.RunWorkerCompleted += bw_RunWorkerCompleted;
-
-
-            if (!File.Exists(path))
+            selectQualityElement.SelectedIndex = 0; // выбор качества
+            officeBox.SelectedIndex = 0;            // выбор офиса
+            selectedUnitsComboBox.SelectedIndex = 0;// выбор окна
+            // файл логов
+            if (!File.Exists(Program.logPath))
             {
-                MessageBox.Show("Файл " + path + " не существует. Укажите путь к файлу");
+                MessageBox.Show("Файл EPMAgent.log не найден. Укажите путь к файлу");
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Логи (*.log)|*.log|Все файлы (*.*)|*.*";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    path = ofd.FileName;
+                    StreamWriter writer = new StreamWriter(Program.configPath, false);
+                    Program.logPath = ofd.FileName;
+                    writer.WriteLine("logpath = " + Program.logPath + "\n");
+                    writer.Close();
                 }
                 else
-                {
                     Environment.Exit(0);
-                }
             }
-            textLength = System.IO.File.ReadAllLines(path).Length;
-            selectQualityElement.SelectedIndex = 0;
-            officeBox.SelectedIndex = 0;
-            selectedUnitsComboBox.SelectedIndex = 0;
+            Program.textLength = File.ReadAllLines(Program.logPath).Length;
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -66,7 +57,7 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.1\nby Aladser\n2022");
+            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.11\nby Aladser\n2022");
         }
 
         private void clear()
@@ -78,9 +69,9 @@ namespace PressKeySearch
         {
             selectedUnitsComboBox.Invoke(new Action(clear));
             selectedUnitsComboBox.Invoke(new Action(() => { selectedUnitsComboBox.Items.Add("Все"); }));
-            text = "";
+            infoFieldText = "";
             infoField.Invoke(new Action(() => { infoField.Text = ""; }));
-            sr = new StreamReader(path, Encoding.Default);
+            sr = new StreamReader(Program.logPath, Encoding.Default);
             String line;
             String qualityName = ""; // выбранная оценка для поиска
             String office = ""; // выбранный офис для поиска
@@ -103,18 +94,18 @@ namespace PressKeySearch
                         if (line.Contains("Офис 1") || line.Contains("Офис 2") || line.Contains("Офис 3"))
                         {
                             window = line.Substring(133, 6) + " " + "Окно " + line.Substring(125, 2);
-                            text += line.Substring(0, 20) + selectedQuality + window + "\n";
+                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
                         }
                         else if (line.Contains("Белогорск") || line.Contains("Свободный"))
                         {
                             window = line.Substring(125, 9) + " " + line.Substring(135, 7);
-                            text += line.Substring(0, 20) + selectedQuality + window + "\n";    
+                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";    
                         }
                         if (!selectedWindows.Contains(window))
                         {
                             selectedWindows.Add(window);
                         }
-                        bw.ReportProgress(li*100/textLength);
+                        bw.ReportProgress(li*100/Program.textLength);
                         li++;
                     }
                 }
@@ -146,7 +137,7 @@ namespace PressKeySearch
             {
                 progressLabel.Text = "Ок";
                 selectedUnitsComboBox.SelectedIndex = 0;
-                infoField.Text = text;
+                infoField.Text = infoFieldText;
             }
         }
         // Выбор окна для фильтрации
@@ -160,7 +151,7 @@ namespace PressKeySearch
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            String[] textArray = text.Split('\n');
+            String[] textArray = infoFieldText.Split('\n');
             String filterText = "";
             for(int i=0; i<textArray.Length; i++)
             {
