@@ -97,24 +97,16 @@ namespace PressKeySearch
                         }));
 
                         if (line.Contains("Офис 1") || line.Contains("Офис 2") || line.Contains("Офис 3"))
-                        {
                             window = line.Substring(133, 6) + " Окно " + line.Substring(125, 2);
-                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
-                        }
                         else if (line.Contains("Белогорск") || line.Contains("Свободный"))
-                        {
                             window = line.Substring(125, 9) + " " + line.Substring(135, 7);
-                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
-                        }
                         else if (line.Contains("Тында"))
-                        {
                             window = "Тында " + line.Substring(131, 7);
-                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
-                        }
+                        else if (line.Contains("Амурская 38"))
+                            window = "Амурская 38 " + line.Substring(137, 6);
+                        infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
                         if (!selectedWindows.Contains(window))
-                        {
                             selectedWindows.Add(window);
-                        }
                         bw.ReportProgress(li*100/Program.textLength);
                         li++;
                     }
