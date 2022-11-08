@@ -1,2 +1,4 @@
-.vs
-obj
+/.vs
+/obj
+/bin
+!/bin/Debug/*.exe
