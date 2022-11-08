@@ -2,3 +2,4 @@
 /obj
 bin/Debug/*.config
 bin/Debug/*.pdb
+*.csproj
