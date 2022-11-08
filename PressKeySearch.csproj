@@ -49,15 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\MainForm.cs">
+    <Compile Include="PressKeySearch\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="classes\MainForm.Designer.cs">
+    <Compile Include="PressKeySearch\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="classes\MainForm.resx">
+    <EmbeddedResource Include="PressKeySearch\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -80,10 +80,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="PressKeySearch\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img.ico" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <ItemGroup>
