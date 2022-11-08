@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace PressKeySearch
         public MainForm()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen; // центрирование окна
             // фоновая задача
             bw = new BackgroundWorker();
             bw.WorkerReportsProgress = true;
