@@ -80,7 +80,7 @@ namespace PressKeySearch
             List<String> selectedWindows = new List<String>(); // Список
             String selectedQuality = ""; // цвет кнопки
             String window = "";
-            int officeNumber = 0;
+            int officeNumber = 0; // 0 -выбраны все офисы
             selectQualityElement.Invoke(new Action(() => { officeNumber = officeBox.SelectedIndex;  }));
             int li = 0;
             // Считывание нужных строк из лог-файла

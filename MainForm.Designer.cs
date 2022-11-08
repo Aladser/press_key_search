@@ -87,7 +87,8 @@
             "Офис 2",
             "Офис 3",
             "Белогорск",
-            "Свободный"});
+            "Свободный",
+            "Тында"});
             this.officeBox.Location = new System.Drawing.Point(79, 14);
             this.officeBox.Name = "officeBox";
             this.officeBox.Size = new System.Drawing.Size(121, 21);
