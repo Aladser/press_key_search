@@ -59,7 +59,7 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.12\nby Aladser\n2022");
+            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.13\nby Aladser\n2022");
         }
 
         private void clear()
@@ -163,6 +163,11 @@ namespace PressKeySearch
                     filterText += textArray[i]+"\n";
             }
             infoField.Text = filterText;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
