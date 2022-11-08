@@ -57,7 +57,7 @@ namespace PressKeySearch
 
         private void aboutImage_MouseHover(object sender, EventArgs e)
         {
-            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.11\nby Aladser\n2022");
+            toolTip.SetToolTip(aboutImage, "Поиск нажатий кнопок\nВерсия 1.12\nby Aladser\n2022");
         }
 
         private void clear()
@@ -74,32 +74,42 @@ namespace PressKeySearch
             sr = new StreamReader(Program.logPath, Encoding.Default);
             String line;
             String qualityName = ""; // выбранная оценка для поиска
-            String office = ""; // выбранный офис для поиска
             selectQualityElement.Invoke(new Action(() => { qualityName = nicks[selectQualityElement.SelectedIndex]; }));
+            string office = ""; // выбранный офис для поиска
             officeBox.Invoke(new Action(() => { office = officeBox.Items[officeBox.SelectedIndex].ToString(); }));
-
             List<String> selectedWindows = new List<String>(); // Список
-            String selectedQuality = "";
+            String selectedQuality = ""; // цвет кнопки
             String window = "";
             int officeNumber = 0;
             selectQualityElement.Invoke(new Action(() => { officeNumber = officeBox.SelectedIndex;  }));
             int li = 0;
+            // Считывание нужных строк из лог-файла
+            // window = '${Название отделения}' + ' Окно ' + '${номер окна}'
             while ((line = sr.ReadLine()) != null)
             {
                 if (line.Contains(qualityName))
                 {
                     if (officeNumber == 0 || line.Contains(office))
                     {
-                        selectQualityElement.Invoke(new Action(() => { selectedQuality = qualities[selectQualityElement.SelectedIndex]; }));
+                        // выбор цвета кнопки
+                        selectQualityElement.Invoke(new Action(() => { 
+                            selectedQuality = qualities[selectQualityElement.SelectedIndex]; 
+                        }));
+
                         if (line.Contains("Офис 1") || line.Contains("Офис 2") || line.Contains("Офис 3"))
                         {
-                            window = line.Substring(133, 6) + " " + "Окно " + line.Substring(125, 2);
+                            window = line.Substring(133, 6) + " Окно " + line.Substring(125, 2);
                             infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
                         }
                         else if (line.Contains("Белогорск") || line.Contains("Свободный"))
                         {
                             window = line.Substring(125, 9) + " " + line.Substring(135, 7);
-                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";    
+                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
+                        }
+                        else if (line.Contains("Тында"))
+                        {
+                            window = "Тында " + line.Substring(131, 7);
+                            infoFieldText += line.Substring(0, 20) + selectedQuality + window + "\n";
                         }
                         if (!selectedWindows.Contains(window))
                         {
